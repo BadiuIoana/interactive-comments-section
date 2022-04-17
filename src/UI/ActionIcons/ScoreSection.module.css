@@ -1,0 +1,21 @@
+.score {
+    color: var(--moderate-blue);
+    font-weight: 500;
+    display: block;
+    flex-direction: column;
+    gap: 0.2rem;
+    background-color: var(--very-light-grey);
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    align-items: center;
+    max-width: 3rem;
+    cursor: pointer;
+}
+
+@media (min-width: 375px) {
+    .score {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+    }
+}

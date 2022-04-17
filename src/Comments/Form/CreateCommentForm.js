@@ -1,7 +1,6 @@
 import classes from "./CreateCommentForm.module.css";
 import Card from "../../UI/Card";
 import { useState } from "react";
-import data from "../../data.json";
 
 const CreateCommentForm = (props) => {
     const [commentContent, setNewCommentContent] = useState({});

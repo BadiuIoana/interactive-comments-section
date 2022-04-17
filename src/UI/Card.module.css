@@ -3,12 +3,13 @@
     padding: 1rem;
     border-radius: 0.4rem;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
     gap: 1rem;
     justify-content: left;
     margin: 0 auto;
     position: relative;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 @media (min-width: 375px) {

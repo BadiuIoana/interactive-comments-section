@@ -1,0 +1,18 @@
+.reply {
+    color: var(--moderate-blue);
+    border: none;
+    padding: 0.4rem;
+    font-weight: 600;
+    background: none;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media (min-width: 375px) {
+    .reply-btn {
+        bottom: initial;
+        max-width: initial;
+    }
+}
