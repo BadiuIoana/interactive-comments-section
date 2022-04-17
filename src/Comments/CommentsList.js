@@ -5,8 +5,12 @@ import RepliesList from "./RepliesList";
 import DeleteIcon from "../UI/ActionIcons/DeleteIcon";
 import EditIcon from "../UI/ActionIcons/EditIcon";
 import ReplyBtn from "../UI/ActionIcons/ReplyBtn";
-import ScoreSection from "../UI/ActionIcons/ScoreSection";
+import ScoreSection from "./ScoreSection";
 import CreateReplyForm from "./Form/CreateReplyForm";
+import DeleteModal from "./DeleteModal";
+
+import { useContext } from "react";
+import CommentsContect from "../store/comments-context";
 
 import Card from "../UI/Card";
 
@@ -14,33 +18,48 @@ import EditCommentForm from "./Form/EditCommentForm";
 
 const CommentsList = (props) => {
     const [toggleEditForm, setToggleEditForm] = useState(false);
+    const [toggleReplyForm, setToggleReplyForm] = useState(false);
+
     const [editedComment, setEditedComment] = useState({});
     const editCommentHandler = (comment) => {
         setEditedComment(comment);
         setToggleEditForm(true);
     };
 
-    const [toggleReplyForm, setToggleForm] = useState(false);
-    const replyHandler = () => {
-        setToggleForm(true);
+    const commentsCtx = useContext(CommentsContect);
+
+    const [modalIsShown, setModalIsShown] = useState(false);
+    const showModalHandler = () => {
+        setModalIsShown(true);
+    }
+
+    const hideModalHandler = () => {
+        setModalIsShown(false);
     };
+
+    const confirmDeleteHandler = () => {
+        commentsCtx.removeComment(props.comment.id);
+    };
+
 
     return (
         <Fragment>
             <Card>
                 <div className={classes["right-section"]}>
-                    <ScoreSection>{props.commItem.score}</ScoreSection>
+                    <ScoreSection post_id={props.comment.id} parrent_id={null}>
+                        {props.comment.score}
+                    </ScoreSection>
                 </div>
 
                 <div className={classes["left-section"]}>
                     <div className={classes["top-section"]}>
                         <div className={classes["user-info"]}>
-                            <img src={props.commItem.user.image.png} alt='' />
+                            <img src={props.comment.user.image.png} alt='' />
                             <p className={classes.name}>
-                                {props.commItem.user.username}
+                                {props.comment.user.username}
                             </p>
                             <p className={classes.date}>
-                                {props.commItem.createdAt}
+                                {props.comment.createdAt}
                             </p>
                             {toggleEditForm && (
                                 <p className={classes["current-user-label"]}>
@@ -48,63 +67,64 @@ const CommentsList = (props) => {
                                 </p>
                             )}
                         </div>
-                        {props.isCurrentUser ? (
+                        {props.comment.user.username ===
+                        commentsCtx.currentUser.username ? (
                             <div className={classes["buttons"]}>
-                                <button
-                                    onClick={() =>
-                                        props.removeComment(props.commItem.id)
-                                    }
-                                >
+                                <button onClick={showModalHandler}>
                                     <DeleteIcon />
                                 </button>
                                 <button
                                     onClick={() =>
-                                        editCommentHandler(props.commItem)
+                                        editCommentHandler(props.comment)
                                     }
                                 >
                                     <EditIcon />
                                 </button>
                             </div>
                         ) : (
-                            <ReplyBtn onClick={replyHandler} />
+                            <ReplyBtn
+                                onClick={() => setToggleReplyForm(true)}
+                            />
                         )}
                     </div>
                     <div className={classes["description"]}>
                         {toggleEditForm ? (
                             <EditCommentForm
                                 editComment={props.editComment}
-                                commItem={editedComment}
-                                prevContent={props.commItem.content}
+                                comment={editedComment}
+                                prevContent={props.comment.content}
                                 toggleEditForm={setToggleEditForm}
                             />
                         ) : (
-                            props.commItem.content
+                            props.comment.content
                         )}
                     </div>
                 </div>
             </Card>
-            {props.commItem.replies.length > 0 ? (
+            {props.comment.replies.length > 0 ? (
                 <RepliesList
-                    replies={props.commItem.replies}
-                    key={props.commItem.id}
-                    currentUser={props.currentUser}
-                    addReply={props.addReply}
-                    commentId={props.commItem.id}
-                    removeReply={props.removeReply}
-                    editReply={props.editReply}
+                    replies={props.comment.replies}
+                    key={props.comment.id}
+                    commentId={props.comment.id}
                 />
             ) : null}
 
             {toggleReplyForm && (
                 <div className={classes["reply-card-position"]}>
                     <CreateReplyForm
-                        toggleForm={setToggleForm}
-                        currentUser={props.currentUser}
-                        addReply={props.addReply}
-                        commentId={props.commItem.id}
-                        mainCommentUsername={props.commItem.user.username}
+                        toggleForm={setToggleReplyForm}
+                        currentUser={commentsCtx.currentUser}
+                        addReply={commentsCtx.addReply}
+                        commentId={props.comment.id}
+                        mainCommentUsername={props.comment.user.username}
                     />
                 </div>
+            )}
+            {modalIsShown && (
+                <DeleteModal
+                    onClose={hideModalHandler}
+                    confirmationHandler={confirmDeleteHandler}
+                />
             )}
         </Fragment>
     );

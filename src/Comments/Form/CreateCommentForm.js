@@ -1,13 +1,16 @@
 import classes from "./CreateCommentForm.module.css";
 import Card from "../../UI/Card";
 import Button from "../../UI/Button";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CommentsContect from "../../store/comments-context";
 
-const CreateCommentForm = (props) => {
+const CreateCommentForm = () => {
     const [commentContent, setNewCommentContent] = useState({});
+    const commentsCtx = useContext(CommentsContect);
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        props.newComment(commentContent);
+        commentsCtx.addComment(commentContent);
     };
 
     const editTextareaHandler = (e) => {
@@ -19,7 +22,7 @@ const CreateCommentForm = (props) => {
     return (
         <Card>
             <form className={classes.form}>
-                <img src={props.currentUser.image.png} alt='' />
+                <img src={commentsCtx.currentUser.image.png} alt='' />
                 <textarea
                     rows='4'
                     cols='50'

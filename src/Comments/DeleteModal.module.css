@@ -1,0 +1,34 @@
+.title {
+    font-weight: 500;
+    color: var(--dark-blue);
+}
+
+.message {
+    display: block;
+    width: 100%;
+    color: var(--grayish-blue);
+    font-weight: 400;
+}
+
+button.secondary {
+    background-color: var(--grayish-blue);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+}
+
+button.dangerous {
+    background-color: var(--soft-red);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    margin-left: 1rem;
+}

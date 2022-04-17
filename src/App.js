@@ -1,15 +1,15 @@
 import "./App.css";
-import { Fragment, useState } from "react";
 import Comments from "./Comments/Comments";
 import MainContainer from "./UI/MainContainer";
+import CommentsSectionProvider from "./store/CommentsSectionProvider";
 
 function App() {
     return (
-        <Fragment>
+        <CommentsSectionProvider>
             <MainContainer>
                 <Comments />
             </MainContainer>
-        </Fragment>
+        </CommentsSectionProvider>
     );
 }
 

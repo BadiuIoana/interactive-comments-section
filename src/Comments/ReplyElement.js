@@ -2,13 +2,19 @@ import classes from "./CommentsList.module.css";
 import DeleteIcon from "../UI/ActionIcons/DeleteIcon";
 import EditIcon from "../UI/ActionIcons/EditIcon";
 import ReplyBtn from "../UI/ActionIcons/ReplyBtn";
-import ScoreSection from "../UI/ActionIcons/ScoreSection";
+import ScoreSection from "./ScoreSection";
 import CreateReplyForm from "./Form/CreateReplyForm";
 import EditReplyForm from "./Form/EditReplyForm";
 import Card from "../UI/Card";
 import { Fragment, useState } from "react";
 
+import { useContext } from "react";
+import CommentsContect from "../store/comments-context";
+import DeleteModal from "./DeleteModal";
+
 const RepliesList = (props) => {
+    const commentsCtx = useContext(CommentsContect);
+
     const [toggleReplyForm, setToggleForm] = useState(false);
     const replyHandler = () => {
         setToggleForm(true);
@@ -22,11 +28,32 @@ const RepliesList = (props) => {
         setToggleEditForm(true);
     };
 
+    const [modalIsShown, setModalIsShown] = useState(false);
+    const showModalHandler = () => {
+        setModalIsShown(true);
+    };
+
+    const hideModalHandler = () => {
+        setModalIsShown(false);
+    };
+
+    const confirmDeleteHandler = () => {
+        commentsCtx.removeReply({
+            replyId: props.reply.id,
+            commId: props.commentId,
+        });
+    };
+
     return (
         <Fragment>
             <Card key={props.reply.id}>
                 <div className={classes["right-section"]}>
-                    <ScoreSection>{props.reply.score}</ScoreSection>
+                    <ScoreSection
+                        post_id={props.reply.id}
+                        parent_id={props.commentId}
+                    >
+                        {props.reply.score}
+                    </ScoreSection>
                 </div>
 
                 <div className={classes["left-section"]}>
@@ -41,19 +68,12 @@ const RepliesList = (props) => {
                             </p>
                         </div>
                         <div className={classes["buttons"]}>
-                            {props.currentUser.username !==
+                            {commentsCtx.currentUser.username !==
                             props.reply.user.username ? (
                                 <ReplyBtn onClick={replyHandler} />
                             ) : (
                                 <div className={classes["buttons"]}>
-                                    <button
-                                        onClick={() =>
-                                            props.removeReply({
-                                                replyId: props.reply.id,
-                                                commId: props.commentId,
-                                            })
-                                        }
-                                    >
+                                    <button onClick={showModalHandler}>
                                         <DeleteIcon />
                                     </button>
                                     <button
@@ -73,7 +93,6 @@ const RepliesList = (props) => {
                         </span>
                         {toggleEditForm ? (
                             <EditReplyForm
-                                editReply={props.editReply}
                                 toggleEditForm={setToggleEditForm}
                                 prevContent={props.reply.content}
                                 commentId={props.commentId}
@@ -86,19 +105,25 @@ const RepliesList = (props) => {
                 </div>
             </Card>
 
-            {props.currentUser.username !== props.reply.user.username
+            {commentsCtx.currentUser.username !== props.reply.user.username
                 ? toggleReplyForm && (
                       <div className={classes["reply-card-position"]}>
                           <CreateReplyForm
                               toggleForm={setToggleForm}
-                              currentUser={props.currentUser}
-                              addReply={props.addReply}
+                              currentUser={commentsCtx.currentUser}
+                              addReply={commentsCtx.addReply}
                               commentId={props.commentId}
                               mainCommentUsername={props.reply.user.username}
                           />
                       </div>
                   )
                 : ""}
+            {modalIsShown && (
+                <DeleteModal
+                    onClose={hideModalHandler}
+                    confirmationHandler={confirmDeleteHandler}
+                />
+            )}
         </Fragment>
     );
 };

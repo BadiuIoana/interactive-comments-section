@@ -1,18 +1,22 @@
 import classes from "./EditCommentForm.module.css";
 import { useState } from "react";
 import Button from "../../UI/Button";
+import { useContext } from "react";
+import CommentsContect from "../../store/comments-context";
 
 const EditCommentForm = (props) => {
+    const commentsCtx = useContext(CommentsContect);
+
     const [editedComment, setEditedCommentContent] = useState({});
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        props.editComment(editedComment);
+        commentsCtx.editComment(editedComment);
         props.toggleEditForm(false);
     };
 
     const editTextareaHandler = (e) => {
         setEditedCommentContent({
-            id: props.commItem.id,
+            id: props.comment.id,
             content: e.target.value,
         });
     };
