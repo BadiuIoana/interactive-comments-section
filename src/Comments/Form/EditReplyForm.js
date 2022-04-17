@@ -1,18 +1,19 @@
-import classes from "./EditCommentForm.module.css";
+import classes from "./EditReplyForm.module.css";
 import { useState } from "react";
 import Button from "../../UI/Button";
 
 const EditCommentForm = (props) => {
-    const [editedComment, setEditedCommentContent] = useState({});
+    const [editedReply, setEditedCommentContent] = useState({});
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        props.editComment(editedComment);
+        props.editReply(editedReply);
         props.toggleEditForm(false);
     };
 
     const editTextareaHandler = (e) => {
         setEditedCommentContent({
-            id: props.commItem.id,
+            comment_id: props.commentId,
+            reply_id: props.replyId,
             content: e.target.value,
         });
     };

@@ -1,0 +1,10 @@
+.purple-btn {
+    background-color: var(--moderate-blue);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+}

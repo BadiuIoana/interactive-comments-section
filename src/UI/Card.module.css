@@ -9,7 +9,6 @@
     margin: 0 auto;
     position: relative;
     margin-top: 2rem;
-    flex-wrap: wrap;
 }
 
 @media (min-width: 375px) {

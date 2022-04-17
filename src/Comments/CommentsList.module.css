@@ -1,41 +1,53 @@
-div.actions-buttons {
-    display: flex;
+.right-section {
+    width: 5%;
 }
 
-div.actions-buttons button {
-    background: none;
+.left-section {
+    width: 95%;
 }
 
-div.user-info {
+.left-section .top-section {
     display: flex;
-    gap: 0.6rem;
-}
-.top-section {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem 0.5rem;
-    margin-bottom: 0.5rem;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.top-section .name {
+.left-section .top-section .user-info {
+    display: flex;
+    gap: 1rem;
+}
+
+.left-section .top-section .user-info .date {
+    color: var(--grayish-blue);
+}
+
+.left-section .top-section .user-info .name {
     font-weight: 500;
     color: var(--dark-blue);
 }
 
-.top-section .date,
-.description {
+.left-section .top-section .user-info .current-user-label {
+    background-color: var(--moderate-blue);
+    color: #fff;
+    padding: 0.2rem 0.4rem;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.left-section .top-section .buttons {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.left-section .top-section .buttons button {
+    background: none;
+}
+
+.left-section .description {
+    display: block;
+    width: 100%;
     color: var(--grayish-blue);
     font-weight: 400;
-}
-
-.description {
-    margin: 0;
-    padding: 0;
-}
-
-.top-section img {
-    max-height: 3rem;
 }
 
 .reply-card-position {
@@ -44,6 +56,9 @@ div.user-info {
     margin-left: 2rem;
 }
 
-section {
-    flex-basis: 90%;
+.replyingTo {
+    color: #5457b6;
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 10px;
 }

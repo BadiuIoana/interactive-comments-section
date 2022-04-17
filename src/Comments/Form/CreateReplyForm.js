@@ -1,19 +1,21 @@
-import classes from "./CreateCommentForm.module.css";
+import classes from "./CreateReplyForm.module.css";
 import Card from "../../UI/Card";
 import Button from "../../UI/Button";
 import { useState } from "react";
-
-const CreateCommentForm = (props) => {
-    const [commentContent, setNewCommentContent] = useState({});
+const CreateReplyForm = (props) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        props.newComment(commentContent);
+        props.toggleForm(false);
+        props.addReply({
+            commentId: props.commentId,
+            responseTo: props.mainCommentUsername,
+            content: textareaText,
+        });
     };
 
-    const editTextareaHandler = (e) => {
-        setNewCommentContent({
-            content: e.target.value,
-        });
+    let textareaText;
+    const addReply = (e) => {
+        textareaText = e.target.value;
     };
 
     return (
@@ -25,13 +27,13 @@ const CreateCommentForm = (props) => {
                     cols='50'
                     name='comment'
                     type='text'
-                    onChange={editTextareaHandler}
+                    onChange={addReply}
                     className={classes["comment-text"]}
                 />
-                <Button onClick={onSubmitHandler}>Send</Button>
+                <Button onClick={onSubmitHandler}>Reply</Button>
             </form>
         </Card>
     );
 };
 
-export default CreateCommentForm;
+export default CreateReplyForm;
