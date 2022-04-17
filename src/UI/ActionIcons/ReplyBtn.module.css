@@ -10,9 +10,10 @@
     cursor: pointer;
 }
 
-@media (min-width: 375px) {
-    .reply-btn {
-        bottom: initial;
-        max-width: initial;
+@media (max-width: 426px) {
+    .reply {
+        position: absolute;
+        bottom: 2rem;
+        right: 1rem;
     }
 }

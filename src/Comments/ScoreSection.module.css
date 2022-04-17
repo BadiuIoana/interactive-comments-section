@@ -5,17 +5,23 @@
     flex-direction: column;
     gap: 0.2rem;
     background-color: var(--very-light-grey);
-    padding: 0.5rem;
+    padding: 1.5rem;
     border-radius: 0.4rem;
     align-items: center;
-    max-width: 1rem;
+    max-width: 4rem;
     cursor: pointer;
+    align-items: baseline;
 }
 
-@media (min-width: 375px) {
+@media (max-width: 426px) {
     .score {
         font-weight: 500;
         display: flex;
         align-items: center;
+        flex-direction: row;
+        width: 7rem;
+        gap: 1.2rem;
+        max-width: unset;
+        padding: 0.9em;
     }
 }

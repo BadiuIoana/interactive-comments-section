@@ -10,16 +10,14 @@ const ScoreSection = (props) => {
         parent_id: props.parent_id,
     };
     return (
-        <div>
-            <div className={classes.score}>
-                <span onClick={() => commentsCtx.dislikeComment(ids)}>
-                    <img src={minus} alt='' />
-                </span>
-                <span>{props.children}</span>
-                <span onClick={() => commentsCtx.likeComment(ids)}>
-                    <img src={plus} alt='' />
-                </span>
-            </div>
+        <div className={classes.score}>
+            <span onClick={() => commentsCtx.dislikeComment(ids)}>
+                <img src={minus} alt='' />
+            </span>
+            <span>{props.children}</span>
+            <span onClick={() => commentsCtx.likeComment(ids)}>
+                <img src={plus} alt='' />
+            </span>
         </div>
     );
 };

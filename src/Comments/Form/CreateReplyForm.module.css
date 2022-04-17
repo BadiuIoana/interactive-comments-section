@@ -33,3 +33,18 @@ button {
 img {
     max-height: 3rem;
 }
+
+
+@media (max-width: 426px) {
+    form {
+        flex-wrap: wrap;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        height: fit-content!important;
+    }
+
+    .comment-text {
+        width: 60%;
+    }
+}

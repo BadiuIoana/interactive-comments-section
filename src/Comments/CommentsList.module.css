@@ -51,7 +51,7 @@
 }
 
 .reply-card-position {
-    border-left: solid 0.3rem var(--light-grayish-blue);
+    border-left: solid 0.1rem var(--light-grayish-blue);
     padding-left: 2rem;
     margin-left: 2rem;
 }
@@ -61,4 +61,20 @@
     display: inline-block;
     font-weight: 700;
     margin-right: 10px;
+}
+
+
+@media (max-width: 426px) {
+    .left-section .top-section .buttons {
+       position: absolute;
+       bottom: 0.5rem;
+       right: 1rem;
+    }
+
+    .reply-card-position {
+        border-left: solid 0.1rem var(--light-grayish-blue);
+        padding-left: 0.5rem;
+        margin-left: 0.5rem;
+    }
+    
 }
