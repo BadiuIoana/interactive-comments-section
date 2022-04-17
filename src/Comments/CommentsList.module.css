@@ -1,0 +1,85 @@
+.score {
+    color: var(--moderate-blue);
+    font-weight: 500;
+    display: block;
+    flex-direction: column;
+    gap: 0.2rem;
+    background-color: var(--very-light-grey);
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    align-items: center;
+    max-width: 3rem;
+    cursor: pointer;
+}
+
+div.actions-buttons {
+    display: flex;
+}
+
+div.actions-buttons button {
+    background: none;
+}
+
+div.user-info {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.reply {
+    color: var(--moderate-blue);
+    border: none;
+    padding: 0.4rem;
+    font-weight: 600;
+    background: none;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.top-section {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: space-between;
+}
+
+.top-section .name {
+    font-weight: 500;
+    color: var(--dark-blue);
+}
+
+.top-section .date,
+.description {
+    color: var(--grayish-blue);
+    font-weight: 400;
+}
+
+.description {
+    margin: 0;
+    padding: 0;
+}
+
+.top-section img {
+    max-height: 3rem;
+}
+
+.reply-card-position {
+    border-left: solid 0.3rem var(--light-grayish-blue);
+    padding-left: 2rem;
+    margin-left: 2rem;
+}
+
+@media (min-width: 375px) {
+    .reply-btn {
+        bottom: initial;
+        max-width: initial;
+    }
+
+    .score {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+    }
+}

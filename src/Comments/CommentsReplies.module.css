@@ -1,0 +1,5 @@
+.reply-card-position {
+    border-left: solid 0.3rem var(--light-grayish-blue);
+    padding-left: 2rem;
+    margin-left: 2rem;
+}

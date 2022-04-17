@@ -1,0 +1,33 @@
+.form {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    align-items: flex-start;
+    height: clamp(4rem, 10vw, 7rem);
+}
+
+textarea {
+    width: 80%;
+    border: 2px solid var(--light-grayish-blue);
+    border-radius: 3px;
+    height: clamp(3rem, 5vw, 6rem);
+}
+
+textarea:visited {
+    border-color: var(--moderate-blue) !important;
+}
+
+button {
+    background-color: var(--moderate-blue);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+img {
+    max-height: 3rem;
+}
